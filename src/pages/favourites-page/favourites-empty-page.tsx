@@ -1,6 +1,6 @@
 function FavouritesEmptyPage(): JSX.Element {
-    return (
-        <div className="page page--favorites-empty">
+  return (
+    <div className="page page--favorites-empty">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -47,7 +47,7 @@ function FavouritesEmptyPage(): JSX.Element {
         </a>
       </footer>
     </div>
-    )
-};
+  );
+}
 
 export default FavouritesEmptyPage;

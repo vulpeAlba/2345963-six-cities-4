@@ -4,7 +4,7 @@ import App from './components/app';
 
 const Settings = {
   cardsNumber: 312
-} as const
+} as const;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

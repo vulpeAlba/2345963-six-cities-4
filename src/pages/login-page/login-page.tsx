@@ -1,6 +1,6 @@
 function LoginPage(): JSX.Element {
-    return ( 
-        <div className="page page--gray page--login">
+  return (
+    <div className="page page--gray page--login">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -39,7 +39,7 @@ function LoginPage(): JSX.Element {
         </div>
       </main>
     </div>
-    )
-};
+  );
+}
 
 export default LoginPage;
