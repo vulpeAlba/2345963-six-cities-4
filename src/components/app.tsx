@@ -16,7 +16,7 @@ type AppPageProps = {
 };
 
 
-function App({cardsNumber, offers}:AppPageProps): JSX.Element {
+function App({cardsNumber, offers}: AppPageProps): JSX.Element {
   const favorites = offers.filter((o) => o.isFavorite);
   return (
     <BrowserRouter>
