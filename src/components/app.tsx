@@ -8,7 +8,7 @@ import AppRoute from './constants/app-link-const';
 import PrivateRoute from './private-route';
 import AuthStatus from './constants/auth-const';
 import { Offer } from '../types/offer';
-
+import { points } from '../mocks/points';
 
 type AppPageProps = {
   cardsNumber: number;
@@ -18,10 +18,11 @@ type AppPageProps = {
 
 function App({cardsNumber, offers}: AppPageProps): JSX.Element {
   const favorites = offers.filter((o) => o.isFavorite);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<MainPage cardsNumber = {cardsNumber} offers = {offers}/>}/>
+        <Route path={AppRoute.Main} element={<MainPage cardsNumber = {cardsNumber} offers = {offers} points = {points}/>}/>
 
         <Route path={AppRoute.Login} element={<LoginPage/>}/>
 

@@ -15,6 +15,8 @@ export type Offer = {
 
 export type City = {
     'name': string;
+    'width': number;
+    'longitude': number;
 };
 
 export type Author = {
