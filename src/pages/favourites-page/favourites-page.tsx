@@ -8,10 +8,10 @@ type FavoritesPageProp = {
 
 function FavouritesPage({favorites}: FavoritesPageProp): JSX.Element {
   const favoritesMap = favorites.reduce(
-    (acc: Record<string, Offer[]>, place: Offer) => {
+    (cityMap: Record<string, Offer[]>, place: Offer) => {
       const city = place.city.name;
-      acc[city] = [...(acc[city] ?? []), place];
-      return acc;
+      cityMap[city] = [...(cityMap[city] ?? []), place];
+      return cityMap;
     },
     {}
   );
