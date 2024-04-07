@@ -1,5 +1,6 @@
 export type Point = {
     'name': string;
-    'width': number;
+    'latitude': number;
     'longitude': number;
+    'zoom': number;
 }

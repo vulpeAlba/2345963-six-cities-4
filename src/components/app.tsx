@@ -4,9 +4,9 @@ import LoginPage from '../pages/login-page/login-page';
 import FavouritesPage from '../pages/favourites-page/favourites-page';
 import OfferPage from '../pages/offer-page/offer-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
-import AppRoute from './constants/app-link-const';
+import { AppRoute } from './constants/all-constants';
 import PrivateRoute from './private-route';
-import AuthStatus from './constants/auth-const';
+import { AuthStatus } from './constants/all-constants';
 import { Offer } from '../types/offer';
 import { points } from '../mocks/points';
 

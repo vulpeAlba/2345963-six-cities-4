@@ -1,17 +1,19 @@
 import {Icon, Marker, layerGroup} from 'leaflet';
-import { Point } from '../types/point';
-import { City } from '../types/offer';
+import { Offer } from '../types/offer';
+import { City } from '../types/city';
+
 import {useRef, useEffect} from 'react';
 import useMap from './hooks/useMap';
+import { URL_MARKER_DEFAULT } from './constants/all-constants';
 
 
 type CityMapProp = {
   city: City;
-  points: Point[];
+  points: Offer[];
 }
 
 const defaultCustomIcon = new Icon({
-  iconUrl: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
+  iconUrl: URL_MARKER_DEFAULT,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
@@ -26,8 +28,8 @@ function CityMap({city, points}: CityMapProp): JSX.Element {
       const markerLayer = layerGroup().addTo(map);
       points.forEach((point) => {
         const marker = new Marker({
-          lat: point.width,
-          lng: point.longitude,
+          lat: point.city.latitude,
+          lng: point.city.longitude,
         });
         marker.setIcon(defaultCustomIcon).addTo(markerLayer);
       });

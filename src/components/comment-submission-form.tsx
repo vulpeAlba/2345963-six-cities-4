@@ -12,8 +12,8 @@ function CommentSubmissionForm() {
   });
 
   const handleCommentChange = (e: SyntheticEvent<HTMLTextAreaElement>) => {
-    setFormState((PrevState) => ({
-      ...PrevState,
+    setFormState((prevState) => ({
+      ...prevState,
       comment: e.currentTarget.value,
     }));
   };

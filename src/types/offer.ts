@@ -1,3 +1,6 @@
+import { City } from './city';
+
+
 export type Offer = {
     'id': string;
     'previewImage': string;
@@ -11,12 +14,6 @@ export type Offer = {
     'numOfGuests': number;
     'price': number;
     'masterInf': Author;
-};
-
-export type City = {
-    'name': string;
-    'width': number;
-    'longitude': number;
 };
 
 export type Author = {
