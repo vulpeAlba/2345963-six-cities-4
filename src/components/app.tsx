@@ -4,17 +4,14 @@ import LoginPage from '../pages/login-page/login-page';
 import FavouritesPage from '../pages/favourites-page/favourites-page';
 import OfferPage from '../pages/offer-page/offer-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
-import { AppRoute } from './constants/all-constants';
+import { AppRoute, AuthStatus } from './constants/all-constants';
 import PrivateRoute from './private-route';
-import { AuthStatus } from './constants/all-constants';
 import { Offer } from '../types/offer';
-import { points } from '../mocks/points';
 
 type AppPageProps = {
   cardsNumber: number;
   offers: Offer[];
 };
-
 
 function App({cardsNumber, offers}: AppPageProps): JSX.Element {
   const favorites = offers.filter((o) => o.isFavorite);
@@ -22,7 +19,7 @@ function App({cardsNumber, offers}: AppPageProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<MainPage cardsNumber = {cardsNumber} offers = {offers} points = {points}/>}/>
+        <Route path={AppRoute.Main} element={<MainPage cardsNumber = {cardsNumber} offers = {offers}/>}/>
 
         <Route path={AppRoute.Login} element={<LoginPage/>}/>
 

@@ -28,8 +28,8 @@ function CityMap({city, points}: CityMapProp): JSX.Element {
       const markerLayer = layerGroup().addTo(map);
       points.forEach((point) => {
         const marker = new Marker({
-          lat: point.city.latitude,
-          lng: point.city.longitude,
+          lat: point.city.point.latitude,
+          lng: point.city.point.longitude,
         });
         marker.setIcon(defaultCustomIcon).addTo(markerLayer);
       });

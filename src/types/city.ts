@@ -1,6 +1,8 @@
 export type City = {
     'name': string;
-    'latitude': number;
-    'longitude': number;
+    'point': {
+        'latitude': number;
+        'longitude': number;
+    };
     'zoom': number;
 }

@@ -12,8 +12,8 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>,
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: city.latitude,
-          lng: city.longitude,
+          lat: city.point.latitude,
+          lng: city.point.longitude,
         },
         zoom: 10,
       });
