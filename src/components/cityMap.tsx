@@ -1,5 +1,5 @@
 import {Icon, Marker, layerGroup} from 'leaflet';
-import { Offer } from '../types/offer';
+import { Offers } from '../types/offer';
 import { City } from '../types/city';
 
 import 'leaflet/dist/leaflet.css';
@@ -10,7 +10,7 @@ import { URL_MARKER_DEFAULT } from './constants/all-constants';
 
 type CityMapProp = {
   city: City;
-  points: Offer[];
+  points: Offers;
 }
 
 const defaultCustomIcon = new Icon({
