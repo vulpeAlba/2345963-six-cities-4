@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { Offer } from './types/offer';
-import {listFilling, cityChange} from './action';
+import { listFilling, cityChange } from './action';
 import { offers } from './mocks/offers';
 
 type StateType = {
