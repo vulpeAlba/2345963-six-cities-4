@@ -9,7 +9,7 @@ import { Cities } from '../../components/constants/cities.tsx';
 
 
 type MainPageProps = {
-    favorites: Offer[];
+  favorites: Offer[];
 };
 
 function MainPage({favorites}: MainPageProps): JSX.Element {
@@ -37,14 +37,14 @@ function MainPage({favorites}: MainPageProps): JSX.Element {
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
+                  <div className="header__nav-link header__nav-link--profile">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
                     <Link to="/favorites">
+                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
                       <span className="header__favorite-count">{favorites.length}</span>
                     </Link>
-                  </a>
+                  </div>
                 </li>
                 <li className="header__nav-item">
                   <a className="header__nav-link" href="#">
@@ -72,7 +72,7 @@ function MainPage({favorites}: MainPageProps): JSX.Element {
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
-                    Popular
+                Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
@@ -84,10 +84,10 @@ function MainPage({favorites}: MainPageProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <CardsList citiesCards={curCityOffers}/>
+              <CardsList citiesCards={curCityOffers} listType={'typical'}/>
             </section>
             <div className="cities__right-section">
-              <section className='cities__map map'>
+              <section className="cities__map map">
                 <CityMap city={curCityOffers.length > 0 ? curCityOffers[0].city : offers[0].city} points={curCityOffers}/>
               </section>
             </div>

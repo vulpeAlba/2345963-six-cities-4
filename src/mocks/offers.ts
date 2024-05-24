@@ -110,9 +110,59 @@ export const offers: Offer[] = [
     },
     'nearPlaces': []
   },
+
+  {
+    'id': '4',
+    'previewImage': 'img/apartment-03.jpg',
+    'title': 'Nice, cozy, warm big bed apartment',
+    'isPremium': true,
+    'isFavorite': true,
+    'type': 'Apartment',
+    'rating': 4.8,
+    'city': {
+      'name': 'Paris',
+      'point': {
+        'latitude': 48.958276,
+        'longitude': 2.294591,
+      },
+      'zoom': 10,
+    },
+    'numOfBedrooms': 3,
+    'numOfGuests': 4,
+    'price': 180,
+    'masterInf': {
+      'photo':'img/avatar-angelina.jpg',
+      'name': 'Angelina',
+      'isPro': true
+    },
+    'nearPlaces': []
+  },
+
+  {
+    'id': '5',
+    'previewImage': 'img/apartment-03.jpg',
+    'title': 'Nice, cozy, warm big bed apartment',
+    'isPremium': true,
+    'isFavorite': true,
+    'type': 'Apartment',
+    'rating': 4.8,
+    'city': {
+      'name': 'Paris',
+      'point': {
+        'latitude': 48.858276,
+        'longitude': 2.294591,
+      },
+      'zoom': 10,
+    },
+    'numOfBedrooms': 3,
+    'numOfGuests': 4,
+    'price': 180,
+    'masterInf': {
+      'photo':'img/avatar-angelina.jpg',
+      'name': 'Angelina',
+      'isPro': true
+    },
+    'nearPlaces': []
+  },
 ];
 
-offers[0].nearPlaces = [offers[1], offers[2], offers[3]];
-offers[1].nearPlaces = [offers[0], offers[2], offers[3]];
-offers[2].nearPlaces = [offers[1], offers[0], offers[3]];
-offers[3].nearPlaces = [offers[1], offers[2], offers[0]];

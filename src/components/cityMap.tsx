@@ -26,6 +26,13 @@ function CityMap({city, points}: CityMapProp): JSX.Element {
 
   useEffect(() => {
     if (map) {
+      map.setView([city.point.latitude, city.point.longitude], city.zoom);
+    }
+  }, [map, city]);
+
+
+  useEffect(() => {
+    if (map) {
       const markerLayer = layerGroup().addTo(map);
       points.map((e) => e.city.point)
         .forEach((point) => {
