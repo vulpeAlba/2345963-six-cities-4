@@ -30,11 +30,15 @@ export const Settings = {
 export const URL_MARKER_DEFAULT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 
+export const URL_MARKER_CURRENT =
+  'public/img/pin-active.svg';
+
 export const getRating = (rate: number) => `${(rate / 5) * 100}%`;
 
-export const sortTypes = {
-  0: 'Popular',
-  1: 'Price: low to high',
-  2: 'Price: high to low',
-  3: 'Top rated first',
-};
+export enum sortTypes {
+  Popular = 'Popular',
+  PriceUp = 'Price: low to high',
+  PriceDown = 'Price: high to low',
+  Top = 'Top rated first',
+}
+

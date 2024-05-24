@@ -2,12 +2,15 @@ import { Offer } from '../types/offer';
 import { Link } from 'react-router-dom';
 import { BOOKMARK_ICON_HEIGHT, BOOKMARK_ICON_WIDTH, CITY_CARD_HEIGHT, CITY_CARD_WIDTH } from './constants/all-constants';
 import { getRating } from './constants/all-constants';
+import { useAppDispatch } from './hooks';
+import { highlightMarker } from '../store/action';
 
 type PlaceCardProp = {
   offerInfo: Offer;
   cityCardType: 'typical' | 'near';
-}
-function PlaceCard({offerInfo, cityCardType}: PlaceCardProp): JSX.Element {
+};
+
+function PlaceCard({ offerInfo, cityCardType }: PlaceCardProp): JSX.Element {
   const {
     id,
     previewImage,
@@ -23,9 +26,14 @@ function PlaceCard({offerInfo, cityCardType}: PlaceCardProp): JSX.Element {
     //masterInf,
   } = offerInfo;
 
+  const dispatch = useAppDispatch();
+
   return (
     <Link to={`/offer/${id}`} state={offerInfo}>
-      <article className={`${cityCardType === 'typical' ? 'cities__card place-card' : 'near-places__card place-card'}`}
+      <article
+        className={`${cityCardType === 'typical' ? 'cities__card place-card' : 'near-places__card place-card'}`}
+        onMouseOver={() => dispatch(highlightMarker({ id }))}
+        onMouseLeave={() => dispatch(highlightMarker(null))}
         onClick={() => window.scrollTo(0, 0)}
       >
         {isPremium && (
@@ -56,13 +64,11 @@ function PlaceCard({offerInfo, cityCardType}: PlaceCardProp): JSX.Element {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: getRating(rating)}}></span>
+              <span style={{ width: getRating(rating) }}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
-          <h2 className="place-card__name">
-            {title}
-          </h2>
+          <h2 className="place-card__name">{title}</h2>
           <p className="place-card__type">{type}</p>
         </div>
       </article>
