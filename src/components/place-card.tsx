@@ -2,8 +2,8 @@ import { Offer } from '../types/offer';
 import { Link } from 'react-router-dom';
 import { CITY_CARD_HEIGHT, CITY_CARD_WIDTH } from './constants/all-constants';
 import { getRating } from './constants/all-constants';
-import { useAppDispatch } from './hooks';
-import { highlightMarker } from '../store/action';
+import { useAppDispatch, useAppSelector } from './hooks';
+import { highlightMarker } from '../store/offer/offer-actions';
 
 type PlaceCardProp = {
   offerInfo: Offer;
@@ -26,13 +26,14 @@ function PlaceCard({ offerInfo, cityCardType }: PlaceCardProp): JSX.Element {
   } = offerInfo;
 
   const dispatch = useAppDispatch();
+  const highlightedMarker = useAppSelector((state) => state.offersReducer.currentOffer);
 
   return (
     <Link to={`/offer/${offerInfo.id}`} state={offerInfo}>
       <article
         className={`${cityCardType === 'typical' ? 'cities__card place-card' : 'near-places__card place-card'}`}
         onMouseEnter={() => dispatch(highlightMarker({id}))}
-        onMouseLeave={() => dispatch(highlightMarker(null))}
+        onMouseLeave={() => highlightedMarker ? dispatch(highlightMarker(highlightedMarker)) : dispatch(highlightMarker(null))}
         onClick={() => window.scrollTo(0, 0)}
       >
         {isPremium && (

@@ -4,27 +4,37 @@ import CardsList from '../../components/cards-list';
 import { useAppSelector, useAppDispatch } from '../../components/hooks';
 import { useLocation, useParams } from 'react-router-dom';
 import Header from '../../components/header';
-import { AuthStatus } from '../../components/constants/all-constants';
+import { AuthStatus, LoadingStatus } from '../../components/constants/all-constants';
 import { fetchOffer } from '../../store/api-actions';
 import { useEffect } from 'react';
 import ReviewList from '../../components/reviews-list';
 import NotFoundPage from '../not-found-page/not-found-page';
+import Spinner from '../../components/spinner';
 
 
 function OfferPage(): JSX.Element {
 
   const { id } = useParams();
   const { pathname } = useLocation();
-  const currentOffer = useAppSelector((state) => state.currentOffer);
-  const currentCity = useAppSelector((state) => state.city);
-  const auth = useAppSelector((state) => state.authStatus === AuthStatus.Auth);
+  const currentOffer = useAppSelector((state) => state.offersReducer.currentOffer);
+  const currentCity = useAppSelector((state) => state.anotherReducer.city);
+  const auth = useAppSelector((state) => state.userReducer.authStatus === AuthStatus.Auth);
   const dispatch = useAppDispatch();
-
+  const loadingStatus = useAppSelector((state) => state.offersReducer.loadingStatus);
 
   useEffect(() =>{
     dispatch(fetchOffer(id ?? ''));
     window.scrollTo(0, 0);
   }, [pathname, dispatch, id]);
+
+
+  if (loadingStatus === LoadingStatus.Pending) {
+    return <Spinner />;
+  }
+
+  if (loadingStatus === LoadingStatus.Error) {
+    return <NotFoundPage />;
+  }
 
 
   return currentOffer ? (
@@ -130,7 +140,7 @@ function OfferPage(): JSX.Element {
         </div>
       </main>
     </div>
-  ) : <NotFoundPage />;
+  ) : <Spinner />;
 }
 
 export default OfferPage;
