@@ -2,15 +2,14 @@ import CommentSubmissionForm from '../../components/comment-submission-form';
 import CityMap from '../../components/cityMap';
 import CardsList from '../../components/cards-list';
 import { useAppSelector, useAppDispatch } from '../../components/hooks';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Header from '../../components/header';
-import { AuthStatus, LoadingStatus } from '../../components/constants/all-constants';
+import { ApiRoute, AuthStatus, LoadingStatus } from '../../components/constants/all-constants';
 import { fetchOffer, toggleFavoriteStatus } from '../../store/api-actions';
 import { useEffect } from 'react';
 import ReviewList from '../../components/reviews-list';
 import NotFoundPage from '../not-found-page/not-found-page';
 import Spinner from '../../components/spinner';
-
 
 function OfferPage(): JSX.Element {
 
@@ -23,6 +22,8 @@ function OfferPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const loadingStatus = useAppSelector((state) => state.offersReducer.loadingStatus);
   const isFavorite = favorites.some((favorite) => favorite.id === currentOffer?.id);
+  const authStatus = useAppSelector((state) => state.userReducer.authStatus);
+  const navigate = useNavigate();
 
   useEffect(() =>{
     dispatch(fetchOffer(id ?? ''));
@@ -39,6 +40,10 @@ function OfferPage(): JSX.Element {
   }
 
   const handleBookmarkClick = () => {
+    if (authStatus !== AuthStatus.Auth) {
+      navigate(ApiRoute.Login);
+      return;
+    }
     dispatch(toggleFavoriteStatus({ offerId: id, status: isFavorite ? 0 : 1}));
   };
 
