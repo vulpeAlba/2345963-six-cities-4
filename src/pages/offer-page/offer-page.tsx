@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from '../../components/hooks';
 import { useLocation, useParams } from 'react-router-dom';
 import Header from '../../components/header';
 import { AuthStatus, LoadingStatus } from '../../components/constants/all-constants';
-import { fetchOffer } from '../../store/api-actions';
+import { fetchOffer, toggleFavoriteStatus } from '../../store/api-actions';
 import { useEffect } from 'react';
 import ReviewList from '../../components/reviews-list';
 import NotFoundPage from '../not-found-page/not-found-page';
@@ -17,10 +17,12 @@ function OfferPage(): JSX.Element {
   const { id } = useParams();
   const { pathname } = useLocation();
   const currentOffer = useAppSelector((state) => state.offersReducer.currentOffer);
+  const favorites = useAppSelector((state) => state.anotherReducer.favorites);
   const currentCity = useAppSelector((state) => state.anotherReducer.city);
   const auth = useAppSelector((state) => state.userReducer.authStatus === AuthStatus.Auth);
   const dispatch = useAppDispatch();
   const loadingStatus = useAppSelector((state) => state.offersReducer.loadingStatus);
+  const isFavorite = favorites.some((favorite) => favorite.id === currentOffer?.id);
 
   useEffect(() =>{
     dispatch(fetchOffer(id ?? ''));
@@ -35,6 +37,10 @@ function OfferPage(): JSX.Element {
   if (loadingStatus === LoadingStatus.Error) {
     return <NotFoundPage />;
   }
+
+  const handleBookmarkClick = () => {
+    dispatch(toggleFavoriteStatus({ offerId: id, status: isFavorite ? 0 : 1}));
+  };
 
 
   return currentOffer ? (
@@ -61,7 +67,7 @@ function OfferPage(): JSX.Element {
               <h1 className="offer__name">
                 {currentOffer.title}
               </h1>
-              <button className={`offer__bookmark-button button ${currentOffer.isFavorite ? 'offer__bookmark-button--active' : ''}`} type="button">
+              <button className={`offer__bookmark-button button ${isFavorite ? 'offer__bookmark-button--active' : ''}`} onClick={handleBookmarkClick} type="button">
                 <svg className="offer__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>
                 </svg>

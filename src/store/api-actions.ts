@@ -38,6 +38,19 @@ export const fetchOffers = createAsyncThunk<Offer[], undefined, ThunkApiConfig>(
   }
 );
 
+export const toggleFavoriteStatus = createAsyncThunk<
+  Offer,
+  { offerId: string | undefined; status: number | undefined },
+  {
+    dispatch: AppDispatch;
+    extra: AxiosInstance;
+  }
+>('toggleFavoriteStatus', async ({ offerId, status }, { dispatch, extra: api }) => {
+  const { data } = await api.post<Offer>(`${ApiRoute.Favourites}/${offerId}/${status}`);
+  await dispatch(fetchFavorites());
+  return data;
+});
+
 export const fetchOffer = createAsyncThunk<Offer, Offer['id'], ThunkApiConfig>(
   'fetchOffer',
   async (offerId, { extra: api, dispatch }) => {

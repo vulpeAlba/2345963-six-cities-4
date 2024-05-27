@@ -4,6 +4,7 @@ import { City, defaultCity } from '../../types/city';
 import { sortTypes } from '../../components/constants/all-constants';
 import { Cities } from '../../components/constants/cities';
 import { Offer } from '../../types/offer';
+import { initialOffersState } from '../offer/offer-reducer';
 
 export type AnotherStateType = {
   city: City;
@@ -21,7 +22,7 @@ export const initialAnotherState: AnotherStateType = {
   favorites: [],
 };
 
-export const anotherReducer = createReducer(initialAnotherState, (builder) => {
+export const anotherReducer = createReducer((initialOffersState && initialAnotherState), (builder) => {
   builder
     .addCase(setCity, (state, { payload }) => {
       state.city = payload;
