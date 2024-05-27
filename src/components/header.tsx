@@ -8,9 +8,11 @@ function Header(): JSX.Element {
   const auth = useAppSelector((state) => state.userReducer.authStatus === AuthStatus.Auth);
   const email = useAppSelector((state) => state.userReducer.author?.email);
   const avatarUrl = useAppSelector((state) => state.userReducer.author?.avatarUrl);
-  const favorites = useAppSelector((state) => state.offersReducer.offers).filter((offer) => offer.isFavorite);
   const dispatch = useAppDispatch();
-  const logoutHandler = () => {
+  const favorites = useAppSelector((state) => state.anotherReducer.favorites);
+
+  const logoutHandler = (evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    evt.preventDefault();
     dispatch(logout());
   };
 
