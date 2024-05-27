@@ -6,13 +6,12 @@ import Header from '../../components/header';
 
 function FavouritesPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  const offers = useAppSelector((state) => state.offersReducer.offers);
+  const favoriteOffers = useAppSelector((state) => state.anotherReducer.favorites);
 
   useEffect(() => {
     dispatch(fetchFavorites());
   }, [dispatch]);
 
-  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
   const cities = Array.from(new Set(favoriteOffers.map((offer) => offer.city.name)));
 
   return (
